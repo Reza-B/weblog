@@ -1,0 +1,44 @@
+<%- include('./includes/navbar.ejs') %>
+<div class="container mt-5">
+	<div class="row">
+		<div class="col">
+			<h1 class="mt-4"><%= post.title %></h1>
+			<p class="lead">
+				نوشته شده توسط :<a href="#"><%= post.user.fullname %></a>
+			</p>
+			<hr />
+			<p>تاریخ انتشار : <%- formatDate(post.createdAt) %></p>
+			<div class="text-center">
+				<img
+					class="img-fluid rounded p-3"
+					src="http://localhost:3000/uploads/thumbnails/<%= post.thumbnail %>"
+					alt="" />
+			</div>
+			<hr />
+			<p class="text-justify"><%- post.body %></p>
+			<hr />
+			<div class="my-4">
+				<h5 class="card-header">نظرت رو برای ما بنویس!</h5>
+				<div class="card-body">
+					<form>
+						<div class="form-group">
+							<textarea class="form-control" rows="3"></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary">ثبت نظر</button>
+					</form>
+				</div>
+			</div>
+			<h5 class="card-header">نظرات</h5>
+			<div class="card m-3">
+				<div class="card-body p-3">
+					<h4 class="card-title">رضا بوذرجمهری</h4>
+					<p class="card-text">سلام این یک کامنت تستی است</p>
+				</div>
+				<p class="card-footer">
+					ثبت شده در : <%- formatDate(post.createdAt) %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include('./includes/footer.ejs') %>

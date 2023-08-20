@@ -1,0 +1,41 @@
+<% if (blogs.length > 0) { %>
+<h2 class="mt-2">آخرین پستها</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-sm">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>عنوان</th>
+				<th>تاریخ</th>
+				<th>وضعیت</th>
+				<th>تنظیمات</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% let index = 0; blogs.forEach(blog => { %>
+			<tr>
+				<td><%= ++index %></td>
+				<td>
+					<a href="/blogs/<%= blog._id %>"> <%= blog.title %> </a>
+				</td>
+				<td><%= formatDate(blog.createdAt) %></td>
+				<td>
+					<span class="badge <%= blog.status === "public" ? "badge-success" : "badge-warning" %>">
+                  <%= blog.status === "public" ? "عمومی" : "خصوصی" %>
+               </span>
+				</td>
+				<td>
+					<a class="btn btn-sm btn-warning" href="/dashboard/edit-post/<%= blog._id %>">ویرایش</a>
+					<a class="btn btn-sm btn-danger" href="/dashboard/delete-post/<%= blog._id %>">حذف</a>
+				</td>
+			</tr>
+			<% }); %>
+		</tbody>
+	</table>
+	<%- include("../includes/pagination.ejs") %>
+</div>
+<% } else { %>
+<div class="text-center">
+	<h3 class="mt-2">در حال حاضر هیچ پستی در پایگاه داده ثبت نشده است.</h3>
+</div>
+<% } %>
